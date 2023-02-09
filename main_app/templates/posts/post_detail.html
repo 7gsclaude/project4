@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %} {% block content %}
+{% comment %} shows cat age {% endcomment %}
+<h1>Cat Details</h1>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+      <p>Post of:  {{post.post_field}}</p>
+        
+      </div>
+      <div class="card-action">
+        {% comment %} <a href="{% url 'cats_update' cat.id %}">Edit</a>
+        <a href="{% url 'cats_delete' cat.id %}">Delete</a> {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+{% comment %} ///materialize form widget config {% endcomment %}
+{% endblock %}

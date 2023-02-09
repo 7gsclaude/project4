@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coral Collector</title>
+    {% comment %} this is the link for materialize  {% endcomment %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    {% comment %} in order to make the calender work on the detail page this is requireed {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body>
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper  deep-purple accent-1">
+          <ul>
+            <li>
+              <a href="/" class="left brand-logo">  InstantSpam</a>
+            </li>
+          </ul>
+          <ul class="right">
+            <li><a href="/about">About</a></li>
+           
+            <li><a href="/posts">Current posts</a></li>
+          {% if user.is_authenticated  %}
+            <li><a href="{% url 'post_create' %}"> Add Post </a></li>
+            {% comment %} <li><a href="{% url 'comment_create' %}">Add Comment</a></li> {% endcomment %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+          {% else %}
+         <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li>
+          {% endif %}
+
+
+          {% comment %} <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li> {% endcomment %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="container">{% block content %} {% endblock %}</main>
+    <footer class="page-footer">
+      <div class="right">
+        All Rights Reserved, © 2023 INSTANTSPAM  
+      </div>
+    </footer>
+  </body>
+</html>
+{% comment %} blocks are used as content setters, essentially i can put anything them like partials and move them around. 
+theyre written onthe page like a block so i can be layerd and stacked  
+in the about html it has the landing/ extention of this html file. they get added on in a sense . 
+
+{% endcomment %}
