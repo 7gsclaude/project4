@@ -5,9 +5,9 @@
 
 {% for toy in object_list %}
 <div class="card">
-  <a href="{% url 'toys_detail' toy.id %}" >
+  <a href="{% url 'comment_create' comment.id %}" >
   <div class="card-content">
-    <span class="card-title">A <span class="{{toy.color.lower}}-text">{{ toy.color.capitalize }}</span> {{ toy.name }}</span>
+    <span class="card-title">A <span class="{{comment==comment.lower}}-text">{{ comment.color.capitalize }}</span></span>
   </div>
   </a>
 </div>

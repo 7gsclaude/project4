@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
-from .models import Post 
+from .models import Post, Comment
 from django.contrib.auth import login
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -49,7 +49,7 @@ def post_detail(request, post_id):
    
    
 def signup(request):
-  error_message = ''
+ 
   if request.method == 'POST':
     # handle the creation of the new user
     # capture form inputs from the submission
@@ -65,13 +65,18 @@ def signup(request):
     # if the user inputs are invalid
     else:
       # generate error message to present to the screen
-      error_message = 'invalid credentials'
+       error_message = 'somethings Invalid***'
   # send a new form to the template
   form = UserCreationForm()
   return render(request, 'registration/signup.html', {
       'form': form,
       'error': error_message
   })
+
+
+def assoc_comment(request, post_id, comment_id):
+  Post.objects.get(id=post_id).comment.add(comment_id)
+  return redirect('detail', post_id=comment_id)
 
 
 # def add_feeding(request, coral_id):
@@ -85,63 +90,51 @@ def signup(request):
 #     # for there to be a relationship between certain things,this must be established
 
 
-# def assoc_med(request, coral_id, med_id):
-#   Coral.obejcts.get(id=coral_id).med.add(med_id)
-#   return redirect('detail', cat_id=med_id)
 
 
 class PostCreate(CreateView):
     model = Post
-    fields = '__all__'
+    fields = ('post_field',)
     success_url = '/posts/'
-
-# class CoralCreate(CreateView):
-#     model = Coral
-#     fields = '__all__'
-#     success_url = '/corals/'
-
-   # this form takes the self anf form
-#    renders a form with the users instance from the selfs user request
-
-# this function is for the user auth i believe
-#    def form_valid(self, form):
-#        form.instance.user = self.request.user
-#        #to hand this back to wehere its pulled you involk super
-#        return super().form_valid(form)
+    
+class PostUpdate(LoginRequiredMixin, UpdateView):
+  model = Post
+  fields = ('post_field',)
 
 
-# class CoralUpdate(UpdateView):
-#   model = Coral
-#   # Let's disallow the renaming of a cat by excluding the name field!
-#   fields = ['name', 'description', 'species', 'price']
-
-
-# class CoralDelete(DeleteView):
-#   model = Coral
-#   success_url = '/corals/'
-
+class PostDelete(LoginRequiredMixin, DeleteView):
+  model = Post
+  success_url = '/posts/'
 
 # # todoo createing a coral landing sppot adn and trying to fix this error markdown is placed where it needs to be. should be bplaced
 
+class CommentCreate (LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ("comment_field",)
 
-# class MedsIndex(LoginRequiredMixin, ListView):
-#   model = Meds
-
-
-# class MedsCreate (LoginRequiredMixin, CreateView):
-#   model = Meds
-#   fields = '__all__'
-
-
-# class MedsDetail(LoginRequiredMixin, DetailView):
-#   model = Meds
+class CommentDelete (LoginRequiredMixin, DeleteView):
+  model = Comment
+  success_url = '/'
 
 
-# class MedsDelete(LoginRequiredMixin, DeleteView):
-#   model = Meds
-#   success_url = '/meds/'
-
-
-# class MedsUpdate(LoginRequiredMixin, UpdateView):
-#   model = Meds
-#   fields = '__all__'
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+  model = Comment
+  fields = ('comment_field',)
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ##### TTO DOOOOO####
+  
+# FIGURE OUT THIS ERROR accounts/signup
