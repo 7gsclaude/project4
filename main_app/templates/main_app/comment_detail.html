@@ -1,16 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Toy Details</h1>
+<h1>Comment Details</h1>
 
 <div class="card">
-    <a href="{% url 'comment_detail' comment.id %}">
+   
         <div class="card-content">
           {{comment.comment_field }}
         </div>
-    </a>
+
     <div class="card-action">
-        <a href="{% url 'comment_update' toy.id %}">Edit</a>
-        <a href="{% url 'comment_delete' toy.id %}">Delete</a>
+        <a href="{% url 'comment_update' comment.id %}">Edit</a>
+        <a href="{% url 'comment_delete' comment.id %}">Delete</a>
     </div>
 </div>
 

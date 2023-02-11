@@ -22,15 +22,14 @@
   <div class="col s6">
     <div class="card">
       <div class="card-content">
-        {% for comment in post.comment_set.all %}
-          <p>{{ comment.comment_field }}</p>
-          <div class="card-action">
-  
-            <a href="{% url 'comment_update' comment.id %}">Edit</a>
-            <a href="{% url 'comment_delete' comment.id %}">Delete</a>
-            <a href="{% url 'comment_create' comment.id %}">Add comment</a>
-          </div>
-        {% endfor %}
+         
+                        <h2> comments</h2>
+
+                    {% for comment in comments %}
+    <p>{{ comment.comment_field }}</p>
+    
+  <p>{{comment.comment_id}}</p>
+{% endfor %}
       </div>
     </div>
   </div>

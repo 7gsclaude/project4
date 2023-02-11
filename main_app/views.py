@@ -4,11 +4,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import Post, Comment
+
 from django.contrib.auth import login
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-# from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -33,19 +34,58 @@ def post_index(request):
 
 ##helps handle the posts 
 
+# def get_comments(self):
+#     return self.comment_set.all()
+
+
 
 
 # # this detail function got updated at the very end in order to show the relationships between the medication
 
 def post_detail(request, post_id):
   post = Post.objects.get(id=post_id)
+  # comments = Comment.objects.get(id=comment_id)
+  # if im going to use the aboce i need to  uncomment adn apply commentid to the () 
   # create an instance of our feeding form
   return render(request, 'posts/post_detail.html', {
-      'post': post
-      ##comments 
+      'post': post,
+      # 'comments': comments
   })
-   
-   
+  
+  
+#   ###below is the post detail pulled from a django comment and posting example 
+#   def post_detail(request, slug):
+#     template_name = 'post_detail.html'
+#     post = get_object_or_404(Post, slug=slug)
+#     comments = post.comments.filter(active=True)
+#     new_comment = None
+#     # Comment posted
+#     if request.method == 'POST':
+#         comment_form = CommentForm(data=request.POST)
+#         if comment_form.is_valid():
+
+#             # Create Comment object but don't save to database yet
+#             new_comment = comment_form.save(commit=False)
+#             # Assign the current post to the comment
+#             new_comment.post = post
+#             # Save the comment to the database
+#             new_comment.save()
+#     else:
+#         comment_form = CommentForm()
+
+#     return render(request, template_name, {'post': post,
+#                                            'comments': comments,
+#                                            'new_comment': new_comment,
+#                                            'comment_form': comment_form})
+  
+  
+  
+    
+  
+
+def comment_detail(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    return render(request, 'main_app/comment_detail.html', {'comment': comment})
    
    
 def signup(request):
@@ -92,7 +132,7 @@ def assoc_comment(request, post_id, comment_id):
 
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ('post_field',)
     success_url = '/posts/'
@@ -108,6 +148,10 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 
 # # todoo createing a coral landing sppot adn and trying to fix this error markdown is placed where it needs to be. should be bplaced
 
+# class CommentDetail (LoginRequiredMixin, DetailView):
+#     model = Comment
+#     fields = ("comment_field",)
+    
 class CommentCreate (LoginRequiredMixin, CreateView):
     model = Comment
     fields = ("comment_field",)
