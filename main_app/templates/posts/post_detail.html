@@ -23,13 +23,14 @@
     <div class="card">
       <div class="card-content">
          
-                        <h2> comments</h2>
-
-                    {% for comment in comments %}
-    <p>{{ comment.comment_field }}</p>
+        <h2> comments</h2>
+        {% comment %} <a href="{% url 'comment_create' comment.id %}">Add comment </a> {% endcomment %}
+        {% for comment in comments %}
+        <p>{{ comment.comment_field }}</p>
     
-  <p>{{comment.comment_id}}</p>
-{% endfor %}
+        <p>{{comment.comment_id}}</p>
+        {% endfor %}
+
       </div>
     </div>
   </div>
