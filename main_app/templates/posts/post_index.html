@@ -4,11 +4,11 @@
 
 
 <div class="card">
-  {% url 'post_detail' post_id %}
-    {% comment %} <a href="{% url 'post_detail' post.id %}">  {% endcomment %}
+  {% comment %} {% url 'post_detail' post_id %} {% endcomment %}
+    {% comment %} {% endcomment %}
 
   {% for post in posts %}
-   
+    <a href="{% url 'post_detail' post.id %}"> 
     <span class='card-title'> This post is from "user"</span>
    
    <p>Post of:  {{post.post_field}}</p>

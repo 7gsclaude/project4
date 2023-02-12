@@ -24,6 +24,8 @@
       <div class="card-content">
          
         <h2> comments</h2>
+        <div class="card-action"> <a href="{% url 'comment_create' %}"> Add Comment </a> </div>
+         
         {% comment %} <a href="{% url 'comment_create' comment.id %}">Add comment </a> {% endcomment %}
         {% for comment in comments %}
         <p>{{ comment.comment_field }}</p>

@@ -45,50 +45,19 @@ def get_comments(self):
 
 
 
-
 # # this detail function got updated at the very end in order to show the relationships between the medication
 
-# def post_detail(request, post_id, comment_id):
-#   post = Post.objects.get(id=post_id)
-#   comments = Comment.objects.get(id=comment_id)
+def post_detail(request, post_id,):
+  post = Post.objects.get(id=post_id)
+  comments = reversed(Comment.objects.all())
+  # if im going to use the above i need to  uncomment adn apply commentid to the () 
+  # create an instance of our feeding form
+  return render(request, 'posts/post_detail.html', {
+      'post': post,
+      # 'comments': comments
+      'comments': comments
+  })   
  
-#   # if im going to use the above i need to  uncomment adn apply commentid to the () 
-#   # create an instance of our feeding form
-#   return render(request, 'posts/post_detail.html', {
-#       'post': post,
-#       'comments': comments
-      
-#   })   
-  
-  
-#   ###below is the post detail pulled from a django comment and posting example 
-def post_detail(request, slug):
-  template_name = 'post_detail.html'
-  post = get_object_or_404(Post, slug=slug)
-  comments = post.comments.filter(active=True)
-  new_comment = None
-    # Comment posted
-  if request.method == 'POST':
-    comment_form = CommentForm(data=request.POST)
-    if comment_form.is_valid():
-
-            # Create Comment object but don't save to database yet
-      new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
-      new_comment.post = post
-            # Save the comment to the database
-      new_comment.save()
-    else:
-        comment_form = CommentForm()
-
-    return render(request, "posts/detail.html", {'post': post,
-                                                 'comments': comments,
-                                                 'comment_form': comment_form})
-  
-  
-  
-    
-  
 
 def comment_detail(request, comment_id):
     comment = Comment.objects.get(id=comment_id)
@@ -96,7 +65,7 @@ def comment_detail(request, comment_id):
    
    
 def signup(request):
- 
+  error_message = ''
   if request.method == 'POST':
     # handle the creation of the new user
     # capture form inputs from the submission
@@ -108,11 +77,11 @@ def signup(request):
       # login the new user
       login(request, user)
       # redirect to the cats index
-      return redirect('index')
+      return redirect('post_index')
     # if the user inputs are invalid
     else:
       # generate error message to present to the screen
-       error_message = 'somethings Invalid***'
+      error_message = 'invalid credentials'
   # send a new form to the template
   form = UserCreationForm()
   return render(request, 'registration/signup.html', {
