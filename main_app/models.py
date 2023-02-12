@@ -15,18 +15,16 @@ class Comment(models.Model):
         return reverse("comment_detail", kwargs={'comment_id': self.id})
     
     def __str__(self):
-        # return 'Comment {} by {}'.format(self.body, self.name)
         return self.comment_field
     
 
 class Post(models.Model):
     post_field = models.TextField(max_length=500)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null = True)
-
     ##null true make it more secure and doesnt lalow any type of outsdie sacess 
     # created_on = models.DateTimeField(auto_now_add=True)
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={
             'post_id': self.id,
-            # 'comment_id':self.id
+            # 'comment_id':self.id this was uncommented beczuse it would cause an error 
             })

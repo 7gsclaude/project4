@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from .models import Post, Comment
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import DetailView
@@ -29,6 +29,7 @@ def about(request):
 
 
 # Add new view
+@login_required
 def post_index(request):
     posts = Post.objects.all()
     comments = Comment.objects.all()
@@ -47,6 +48,7 @@ def get_comments(self):
 
 # # this detail function got updated at the very end in order to show the relationships between the medication
 
+@login_required
 def post_detail(request, post_id,):
   post = Post.objects.get(id=post_id)
   comments = reversed(Comment.objects.all())
@@ -89,10 +91,10 @@ def signup(request):
       'error': error_message
   })
 
-
+@login_required
 def assoc_comment(request, post_id, comment_id):
   Post.objects.get(id=post_id).comment.add(comment_id)
-  return redirect('detail', post_id=comment_id)
+  return redirect('detail', post_id=post_id)
 
 
 
@@ -142,6 +144,8 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
   
   
   
-  ##### TTO DOOOOO####
+  ##### #########TTO DOOOOO####
   
-# FIGURE OUT THIS ERROR accounts/signup
+# get heroku 
+# working on css 
+

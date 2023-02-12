@@ -10,12 +10,24 @@
   {% for post in posts %}
     <a href="{% url 'post_detail' post.id %}"> 
     <span class='card-title'> This post is from "user"</span>
+<div>
+<ul class="collection">
+  <li class="collection-item">"User" said:  {{post.post_field}}</li>
+</ul>
+
+
+
+
    
-   <p>Post of:  {{post.post_field}}</p>
+   
     {% for comment in comments%}
+    <ul class="collection">
+      <li class="collection-item">comment: {{comment.comment_field}}</li>
+    </ul>
  
-     <p> comment: {{comment.comment_field}}</p>
+     
      {%endfor%} 
+     </div>
    <hr>
 
 
