@@ -13,7 +13,7 @@
 
 # Technology
 
-[![My Skills](https://skillicons.dev/icons?i=python,django,heroku,css,js,html,css)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,django,heroku,js,html,css)](https://skillicons.dev)
 
 * Python3 
 * Django 
