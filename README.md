@@ -26,7 +26,10 @@
 #live link 
 *<a href="https://thawing-island-70231.herokuapp.com">Instantspam</a>
 
-#Future enhancements
+# Future enhancements
 ## Creating profiles
 ## fixing carousel
 ## implementing direct messages
+
+
+# Screenshots 
