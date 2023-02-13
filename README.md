@@ -1,8 +1,8 @@
 # project4
 
-*Purpose and Goals
+* Purpose and Goals
 
-##The goal of this project was to create an instagram clone to practice python skills and knowledge. There are many apps that we use on the daily that utilize this frame work or something similar.
+## The goal of this project was to create an instagram clone to practice python skills and knowledge. There are many apps that we use on the daily that utilize this frame work or something similar.
 ##getting more practice with it can only be beneficial 
 
 ## As users, it is possible to:
@@ -11,7 +11,7 @@
 * The user is also able to delete and update posts and comments made as well.  
 
 
-#Technology
+# Technology
 
 [![My Skills](https://skillicons.dev/icons?i=python,django,heroku,css,js,html,css)](https://skillicons.dev)
 
