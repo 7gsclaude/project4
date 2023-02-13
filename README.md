@@ -6,9 +6,9 @@
 ##getting more practice with it can only be beneficial 
 
 ## As users, it is possible to:
-*create an account,logout, login
-*create a post, and create a comment. 
-*The user is also able to delete and update posts and comments made as well.  
+* Create an account,logout, login
+* Create a post, and create a comment. 
+* The user is also able to delete and update posts and comments made as well.  
 
 
 #Technology
