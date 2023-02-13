@@ -13,7 +13,7 @@
 
 #Technology
 
-[![My Skills](https://skillicons.dev/icons?i=nodejs,express,mongodb,react,firebase,heroku,netlify,js,html,css)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,django,heroku,css,js,html,css)](https://skillicons.dev)
 
 * Python3 
 * Django 
@@ -25,3 +25,8 @@
 
 #live link 
 *<a href="https://thawing-island-70231.herokuapp.com">Instantspam</a>
+
+#Future enhancements
+## Creating profiles
+## fixing carousel
+## implementing direct messages
