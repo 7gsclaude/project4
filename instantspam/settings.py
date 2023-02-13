@@ -8,8 +8,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+# import os
 from pathlib import Path
+import django_heroku
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +26,7 @@ SECRET_KEY = 'django-insecure-r$*=67tl_ln&aw8h#(wt&rsrz42o*7xmb62et9j+8169*t-*v#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -76,7 +78,11 @@ WSGI_APPLICATION = 'instantspam.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instantspam',
+        'NAME': 'claudea1112/instantspam',
+        'USER': 'claudea1112',
+        'PASSWORD': 'v2_3z4hz_MXYWdphkEC9CtHqm65Wg2p4',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
 
@@ -118,8 +124,13 @@ USE_TZ = True
 LOGIN_REDIRECT_URL ='/'
 LOGOUT_REDIRECT_URL='/'
 
+### this is the recomended settings for herokudjango uploads
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/' 
 
-STATIC_URL = 'static/css/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

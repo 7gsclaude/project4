@@ -1,0 +1,1 @@
+web: gunicorn instantspam.wsgi:application --log-file -
