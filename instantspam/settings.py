@@ -8,8 +8,13 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-# import os
+import os
+
+from dotenv import load_dotenv
+
 from pathlib import Path
+
+
 
 # import dj_database_url
 
@@ -76,13 +81,14 @@ WSGI_APPLICATION = 'instantspam.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+   
+   'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'claudea1112/instantspam',
-        'USER': 'claudea1112',
-        'PASSWORD': 'v2_3z4hz_MXYWdphkEC9CtHqm65Wg2p4',
-        'HOST': 'db.bit.io',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
